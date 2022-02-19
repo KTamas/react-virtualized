@@ -1,22 +1,28 @@
-/** @flow */
+'use strict';
 
-type Callback = (timestamp: number) => void;
-type CancelAnimationFrame = (requestId: number) => void;
-type RequestAnimationFrame = (callback: Callback) => number;
+Object.defineProperty(exports, '__esModule', {
+  value: true,
+});
+exports.caf = exports.raf = void 0;
 
+/*:: type Callback = (timestamp: number) => void;*/
+
+/*:: type CancelAnimationFrame = (requestId: number) => void;*/
+
+/*:: type RequestAnimationFrame = (callback: Callback) => number;*/
 // Properly handle server-side rendering.
-let win;
+var win;
+
 if (typeof window !== 'undefined') {
   win = window;
 } else if (typeof self !== 'undefined') {
   win = self;
 } else {
   win = {};
-}
-
-// requestAnimationFrame() shim by Paul Irish
+} // requestAnimationFrame() shim by Paul Irish
 // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
-const request =
+
+var request =
   win.requestAnimationFrame ||
   win.webkitRequestAnimationFrame ||
   win.mozRequestAnimationFrame ||
@@ -26,7 +32,7 @@ const request =
     return win.setTimeout(callback, 1000 / 60);
   };
 
-const cancel =
+var cancel =
   win.cancelAnimationFrame ||
   win.webkitCancelAnimationFrame ||
   win.mozCancelAnimationFrame ||
@@ -36,5 +42,7 @@ const cancel =
     win.clearTimeout(id);
   };
 
-export const raf = request;
-export const caf = cancel;
+var raf = request;
+exports.raf = raf;
+var caf = cancel;
+exports.caf = caf;

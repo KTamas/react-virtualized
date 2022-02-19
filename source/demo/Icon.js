@@ -10,7 +10,6 @@ export const TYPES = {
   DOCUMENTATION: 'DOCUMENTATION',
   ISSUES: 'ISSUES',
   SOURCE: 'SOURCE',
-  WIZARD: 'WIZARD',
 };
 
 Icon.propTypes = {
@@ -52,8 +51,6 @@ export function getIconData(type) {
       return (
         <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" />
       );
-    case TYPES.WIZARD:
-      return <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z" />;
     default:
       throw new Error(`Invalid icon type: ${type}`);
   }
